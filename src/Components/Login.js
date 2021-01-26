@@ -18,12 +18,12 @@ const Login = () => {
       body: formData
     })
       .then(res => res.json())
-      .then(data => {
-        if (data['user']) {
-          localStorage.setItem('user', JSON.stringify(data['user']))
-          setUser(data['user'])
+      .then(obj => {
+        if (obj['user']) {
+          localStorage.setItem('user', JSON.stringify(obj['user']))
+          setUser(obj['user'])
         } else {
-          alert(data['error'])
+          alert(obj['error'])
         }
       })
   }

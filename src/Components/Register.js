@@ -22,14 +22,13 @@ const Register = () => {
         body: formData
       })
         .then(res => res.json())
-        .then(data => {
-          if (data['status'] === 'new') {
-            setState({'state': !registeredState.state, 'user': data['user']})
+        .then(obj => {
+          if (obj['user']) {
+            // setState({'state': !registeredState.state, 'user': obj['user']})
             alert(`${formInput['email']} is successfully registered`)
           } else {
             alert(`${formInput['email']} is already registered`)
           }
-
         })
         .catch(console.error)
     }
