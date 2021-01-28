@@ -19,17 +19,12 @@ const Login = () => {
     })
       .then(res => res.json())
       .then(obj => {
-        if (obj['user']) {
-          localStorage.setItem('user', JSON.stringify(obj['user']))
-          setUser(obj['user'])
-        } else {
-          alert(obj['error'])
-        }
+        setUser(obj['user'])
       })
   }
 
   if (loggedInUser['id']) {
-    return <Redirect to={`/profile/${loggedInUser['id']}`}/>
+    return <Redirect to={`/user/${loggedInUser['id']}`}/>
   }
 
 

@@ -24,7 +24,7 @@ const Register = () => {
         .then(res => res.json())
         .then(obj => {
           if (obj['user']) {
-            // setState({'state': !registeredState.state, 'user': obj['user']})
+            setState({'state': !registeredState.state, 'user': obj['user']})
             alert(`${formInput['email']} is successfully registered`)
           } else {
             alert(`${formInput['email']} is already registered`)
@@ -38,7 +38,12 @@ const Register = () => {
   if (registeredState.state) {
     localStorage.setItem('user', JSON.stringify(registeredState['user']))
     // localStorage.setItem('token', ************)
-    return <Redirect to={`/profile/${registeredState['user']['id']}`}/>
+    return <Redirect to={{
+          pathname: `/user/${registeredState['user']['id']}`,
+          state: { id: registeredState['user']['id'] }
+      }}
+    />
+    // return <Redirect to={`/profile/${registeredState['user']['id']}`}/>
   }
 
 
