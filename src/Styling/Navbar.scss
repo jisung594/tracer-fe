@@ -1,8 +1,18 @@
 $green: #007860;
 
+@mixin center {
+  // set 'position' of parent div to RELATIVE
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
 .navbar {
   display: grid;
-  position: relative;
+  // position: relative;
   grid-template-columns: 10% 80% 10%;
   background-color: $green;
   height: 50px;
@@ -12,16 +22,19 @@ $green: #007860;
   }
 
   .grid-col-2 {
+    position: relative;
+
     #logo {
       height: 40px;
       width: auto;
 
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      margin: auto;
+      @include center;
+      // position: absolute;
+      // top: 0;
+      // bottom: 0;
+      // left: 0;
+      // right: 0;
+      // margin: auto;
     }
   }
 
@@ -44,7 +57,9 @@ $green: #007860;
     }
 
     .grid-col-2 {
-
+      #logo {
+        margin-left: 20px;
+      }
     }
 
     .grid-col-3 {
@@ -54,15 +69,16 @@ $green: #007860;
         display: none;
       }
 
-
       #menu-icon {
         display: block;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        margin: auto;
+
+        @include center;
+        // position: absolute;
+        // top: 0;
+        // bottom: 0;
+        // left: 0;
+        // right: 0;
+        // margin: auto;
       }
     }
   }

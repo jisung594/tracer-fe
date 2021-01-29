@@ -8,7 +8,7 @@ const Navbar = () => {
   return (
       <div className='navbar'>
         <div className='grid-col-1'>
-          <p> *** grid col 1 *** </p>
+          {/*  <p> *** grid col 1 *** </p>  */}
         </div>
         <div className='grid-col-2'>
           <img id='logo' src={logo} alt='logo'/>
