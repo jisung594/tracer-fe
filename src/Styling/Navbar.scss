@@ -10,6 +10,7 @@ $green: #007860;
   margin: auto;
 }
 
+
 .navbar {
   display: grid;
   // position: relative;
@@ -25,16 +26,10 @@ $green: #007860;
     position: relative;
 
     #logo {
+      @include center;
+
       height: 40px;
       width: auto;
-
-      @include center;
-      // position: absolute;
-      // top: 0;
-      // bottom: 0;
-      // left: 0;
-      // right: 0;
-      // margin: auto;
     }
   }
 
@@ -70,15 +65,9 @@ $green: #007860;
       }
 
       #menu-icon {
-        display: block;
-
         @include center;
-        // position: absolute;
-        // top: 0;
-        // bottom: 0;
-        // left: 0;
-        // right: 0;
-        // margin: auto;
+
+        display: block;
       }
     }
   }
