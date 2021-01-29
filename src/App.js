@@ -5,6 +5,7 @@ import Register from './Components/Register'
 import AssetProfile from './Components/AssetProfile'
 import UserProfile from './Components/UserProfile'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import './Styling/App.scss'
 
 
 function App() {
