@@ -1,5 +1,5 @@
 $green: #007860;
-
+$light_green: #d5e6e2;
 
 .form {
 
@@ -8,31 +8,15 @@ $green: #007860;
   }
 
   form {
-    position: relative;
-
-    input {
-      display: block;
-      width: 300px;
-      height: 28px;
-      margin: 4px;
-    }
-
-    input[type=submit] {
-      border: none;
-      width: 250px;
-      height: 30px;
-      background-color: $green;
-
-      margin: 20px auto;
-    }
+    // position: relative;
 
     div {
       position: relative;
 
       label {
         position: absolute;
-        top: 12px;
-        left: 15px;
+        top: 6px;
+        left: 14px;
         padding: 3px;
         color: black;
         font-size: 16px;
@@ -41,7 +25,71 @@ $green: #007860;
         // background-image: transparent;
         transition: top .2s linear, padding .2s linear, background-color 0s linear;
       }
+
+      input {
+        display: block;
+        width: 300px;
+        height: 32px;
+        margin: 4px;
+        padding-left: 10px;
+        border: solid 1px $light_green;
+        transition: all .2s linear;
+
+        &:focus {
+          color: red;
+          background-color: $light_green;
+          border: solid 1px white;
+          outline: none;
+          caret-color: $green;
+
+          margin-top: 14px;
+
+          & ~ label {
+            padding: 2px 8px;
+            color: $green;
+            top: -12px;
+            background-color: $light_green;
+            transition: top .4s linear, padding .4s linear .4s, background-color 0s linear .4s;
+            // transition: left .6s linear, padding .6s linear .6s, background-color 0s linear .6s;
+          }
+        }
+
+        &:valid {
+          background-color: $light_green;
+          border: solid 1px white;
+
+          margin-top: 14px;
+
+          & ~ label {
+            padding: 2px 8px;
+            color: $green;
+            top: -12px;
+            background-color: $light_green;
+            transition: top .4s linear, padding .4s linear .4s, background-color 0s linear .4s;
+            // transition: left .6s linear, padding .6s linear .6s, background-color 0s linear .6s;
+          }
+        }
+      }   // -------- input --------
+
+    }  // -------- div --------
+
+    .submit-div {
+      margin: 30px;
+
+      input[type=submit] {
+        border: none;
+        width: 250px;
+        height: 30px;
+        background-color: $green;
+
+        position: absolute;
+        top: 0px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+      }
     }
 
-  }
-}
+  }  // -------- form --------
+}  // -------- .form --------

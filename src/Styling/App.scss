@@ -1,7 +1,13 @@
+$green: #007860;
+$light_green: #d5e6e2;
+
+
 .App {
   .main {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    background-color: $light_green;
   }
 }
