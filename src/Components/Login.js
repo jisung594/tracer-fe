@@ -30,21 +30,31 @@ const Login = () => {
 
   return (
     <div className="form">
-      <h2> Login </h2>
+      <h2> LOGIN </h2>
       <form onSubmit={(event) => loginUser(event)}>
-        <input
-          type='text'
-          name='email'
-          placeholder='Email'
-          onChange={e => setInput({...formInput, [e.target.name]: e.target.value})}
-        />
-        <input
-          type='password'
-          name='password'
-          placeholder='Password'
-          onChange={e => setInput({...formInput, [e.target.name]: e.target.value})}
-        />
-        <input type='submit'/>
+        <div>
+          <input
+            id='email'
+            type='text'
+            name='email'
+            onChange={e => setInput({...formInput, [e.target.name]: e.target.value})}
+            required
+          />
+          <label htmlFor="email">Email</label>
+        </div>
+        <div>
+          <input
+            id='password'
+            type='password'
+            name='password'
+            onChange={e => setInput({...formInput, [e.target.name]: e.target.value})}
+            required
+          />
+          <label htmlFor="password">Password</label>
+        </div>
+        <div className='submit-div'>
+          <input type='submit'/>
+        </div>
       </form>
     </div>
   )

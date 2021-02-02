@@ -1,4 +1,4 @@
-$green: #007860;
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@200;400;600;700&family=Proza+Libre:ital,wght@0,400;0,500;1,600&display=swap');
 
 @mixin center {
   // set 'position' of parent div to RELATIVE
@@ -10,30 +10,96 @@ $green: #007860;
   margin: auto;
 }
 
+@mixin option {
+  font-family: 'Karla', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 12px;
+  // color: $light_aqua;
+  color: $green;
+  text-decoration: none;
+}
+
+$green: #105952;
+$aqua: #177F75;
+$light_aqua: #dff5f3;
+$light_gray: #fafafa;
+
 
 .navbar {
   display: grid;
-  // position: relative;
-  grid-template-columns: 10% 80% 10%;
-  background-color: $green;
+  grid-template-columns: 15% 60% 25%;
+  // background-color: $green;
+  background-color: $light_aqua;
   height: 50px;
+  filter: drop-shadow(0px 2px 6px #c3e3e0);
+
+  position: fixed;
+  overflow: hidden;
+  width: 100%;
+  top: 0;
 
   .grid-col-1 {
-    display: block;
-  }
-
-  .grid-col-2 {
     position: relative;
 
     #logo {
       @include center;
-
-      height: 40px;
+      height: 36px;
       width: auto;
     }
   }
 
+  .grid-col-2 {
+    display: flex;
+    align-items: center;
+
+    .nav-option {
+      @include option;
+    }
+  }
+
   .grid-col-3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .acc-option {
+      @include option;
+    }
+
+    .login {
+      &:hover {
+        &:after {
+          display: block;
+        }
+      }
+
+      &:after {
+        content: "";
+        display: none;
+        // display: block;
+        position: absolute;
+        width: 44px;
+        height: 2px;
+        background-color: $green;
+        bottom: 10px;
+
+        margin-left: 1px;
+      }
+    }   // -------- .login --------
+
+
+
+    .register {
+      padding: 3px 8px;
+      border: solid 2px $green;
+
+      &:hover {
+        color: $light_aqua;
+        background-color: $green;
+      }
+    }
+
     #menu-icon {
       display: none;
       height: 30px;
@@ -43,31 +109,32 @@ $green: #007860;
 }
 
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
   .navbar {
     grid-template-columns: 85% 15%;
 
     .grid-col-1 {
-      display: none;
-    }
-
-    .grid-col-2 {
       #logo {
         margin-left: 20px;
       }
     }
 
+    .grid-col-2 {
+      display: none;
+    }
+
     .grid-col-3 {
       position: relative;
 
-      .nav-acc {
+      .acc-option {
         display: none;
       }
 
       #menu-icon {
         @include center;
-
         display: block;
+        // filter: invert(90%) sepia(10%) saturate(684%) hue-rotate(109deg) brightness(108%) contrast(103%);
+        filter: invert(26%) sepia(10%) saturate(4341%) hue-rotate(128deg) brightness(91%) contrast(87%);
       }
     }
   }

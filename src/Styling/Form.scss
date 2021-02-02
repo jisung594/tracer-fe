@@ -1,70 +1,94 @@
-$green: #007860;
-$light_green: #d5e6e2;
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@200;400;600;700&family=Proza+Libre:ital,wght@0,400;0,500;1,600&display=swap');
+
+@mixin center {
+  // set 'position' of parent div to RELATIVE
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+$green: #105952;
+$aqua: #177F75;
+$light_aqua: #dff5f3;
+$light_gray: #fafafa;
+
 
 .form {
+  margin-top: 100px;
 
   h2 {
+    font-family: 'Proza Libre', sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: $aqua;
     text-align: center;
   }
 
   form {
-    // position: relative;
-
     div {
       position: relative;
 
       label {
         position: absolute;
-        top: 6px;
+        top: 8px;
         left: 14px;
         padding: 3px;
-        color: black;
+        color: grey;
+        font-family: 'Proza Libre', sans-serif;
         font-size: 16px;
+        font-weight: 400;
         letter-spacing: 0;
-        // line-height: 16px;
-        // background-image: transparent;
         transition: top .2s linear, padding .2s linear, background-color 0s linear;
       }
 
       input {
         display: block;
-        width: 300px;
-        height: 32px;
+        font-family: 'Karla', sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        width: 440px;
+        height: 40px;
         margin: 4px;
         padding-left: 10px;
-        border: solid 1px $light_green;
+        border: solid 1px $light_aqua;
         transition: all .2s linear;
+        background-color: $light_gray;
 
         &:focus {
-          color: red;
-          background-color: $light_green;
-          border: solid 1px white;
+          color: $aqua;
+          background-color: $light_aqua;
+          border: solid 1px $aqua;
           outline: none;
-          caret-color: $green;
+          caret-color: $aqua;
 
           margin-top: 14px;
 
           & ~ label {
             padding: 2px 8px;
-            color: $green;
+            color: $aqua;
             top: -12px;
-            background-color: $light_green;
+            background-color: $light_aqua;
             transition: top .4s linear, padding .4s linear .4s, background-color 0s linear .4s;
             // transition: left .6s linear, padding .6s linear .6s, background-color 0s linear .6s;
           }
         }
 
         &:valid {
-          background-color: $light_green;
-          border: solid 1px white;
+          color: $aqua;
+          background-color: $light_aqua;
+          border: solid 1px gray;
 
           margin-top: 14px;
 
           & ~ label {
             padding: 2px 8px;
-            color: $green;
+            color: gray;
             top: -12px;
-            background-color: $light_green;
+            background-color: $light_aqua;
             transition: top .4s linear, padding .4s linear .4s, background-color 0s linear .4s;
             // transition: left .6s linear, padding .6s linear .6s, background-color 0s linear .6s;
           }
@@ -77,17 +101,18 @@ $light_green: #d5e6e2;
       margin: 30px;
 
       input[type=submit] {
+        @include center;
+
+        font-family: 'Proza Libre', sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: $light_aqua;
+        background-color: $aqua;
         border: none;
         width: 250px;
         height: 30px;
-        background-color: $green;
-
-        position: absolute;
-        top: 0px;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        margin: auto;
       }
     }
 

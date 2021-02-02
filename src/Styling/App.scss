@@ -1,13 +1,17 @@
-$green: #007860;
-$light_green: #d5e6e2;
+$green: #105952;
+$aqua: #177F75;
+$light_aqua: #dff5f3;
 
 
 .App {
+  // background-image: url('../Assets/background.png');
+
   .main {
     display: flex;
     justify-content: center;
-    align-items: center;
+    // align-items: center;
+    height: 100vh;
 
-    background-color: $light_green;
+    background-color: $light_aqua;
   }
 }

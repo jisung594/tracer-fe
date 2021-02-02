@@ -50,59 +50,59 @@ const Register = () => {
 
   return (
     <div className='form'>
-      <h2> Register </h2>
+      <h2> REGISTER </h2>
       <form onSubmit={(event) => registerUser(event)}>
 
         <div>
           <input
-            type='text'
             id='first_name'
+            type='text'
             name='first_name'
             onChange={e => setInput({...formInput, [e.target.name]: e.target.value})}
             required
           />
-          <label for="first_name">First Name</label>
+          <label htmlFor="first_name">First Name</label>
         </div>
         <div>
           <input
-            type='text'
             id='last_name'
+            type='text'
             name='last_name'
             onChange={e => setInput({...formInput, [e.target.name]: e.target.value})}
             required
           />
-          <label for="last_name">Last Name</label>
+          <label htmlFor="last_name">Last Name</label>
         </div>
 
         <div>
           <input
-            type='text'
             id='email'
+            type='text'
             name='email'
             onChange={e => setInput({...formInput, [e.target.name]: e.target.value})}
             required
           />
-          <label for="email">Email</label>
+          <label htmlFor="email">Email</label>
         </div>
         <div>
           <input
-            type='password'
             id='password'
+            type='password'
             name='password'
             onChange={e => setInput({...formInput, [e.target.name]: e.target.value})}
             required
           />
-          <label for="password">Password</label>
+          <label htmlFor="password">Password</label>
         </div>
         <div>
           <input
-            type='password'
             id='password_conf'
+            type='password'
             name='password_conf'
             onChange={e => setInput({...formInput, [e.target.name]: e.target.value})}
             required
           />
-          <label for="password_conf">Confirm Password</label>
+          <label htmlFor="password_conf">Confirm Password</label>
         </div>
         <div className='submit-div'>
           <input type='submit'/>
