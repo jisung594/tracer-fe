@@ -1,12 +1,15 @@
 import React, { useEffect } from 'react';
 
 const UserProfile = (props) => {
+  // const {  } = props
+
   useEffect(() => {
     fetch('http://127.0.0.1:5000/check_login')
       .then(res => res.json())
       .then(data => {
         console.log(data);
       })
+  // },[ ***props*** ])
   },[])
 
   // console.log(props.location.state.id);

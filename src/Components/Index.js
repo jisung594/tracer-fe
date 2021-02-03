@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import SecurityPreview from './SecurityPreview'
 import '../Styling/Index.scss'
 
 const Index = () => {
@@ -13,7 +15,7 @@ const Index = () => {
     fetch('http://127.0.0.1:5000/stocks_us')
       .then(res => res.json())
       .then(data => {
-        setSecurities(data.slice(0,10))
+        setSecurities(data.slice(0,3))  //-------------------------------
       })
   },[])
 
@@ -22,7 +24,7 @@ const Index = () => {
     fetch('http://127.0.0.1:5000/stocks_us')
       .then(res => res.json())
       .then(stocks => {
-        setSecurities(stocks.slice(0,10))
+        setSecurities(stocks.slice(0,3))  //-------------------------------
       })
 
     setType(type)
@@ -42,8 +44,7 @@ const Index = () => {
   let stockList
   if (securityArr.length > 1) {
     stockList = securityArr.map((obj,i) => {
-      return <p key={i}>{obj['symbol']}</p>
-      // return <p key={i}>{obj}</p>
+      return <Link key={i} to={`/security/${obj['symbol']}`}><SecurityPreview key={i} stock={obj}/></Link>
     })
   }
 
@@ -54,7 +55,7 @@ const Index = () => {
     })
   }
 
-  console.log(securityArr);
+  // console.log(securityArr);
 
   return (
     <div className='index'>
