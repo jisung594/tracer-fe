@@ -1,21 +1,24 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Route, Link, Switch } from 'react-router-dom'
 import SecurityPreview from './SecurityPreview'
-import '../Styling/Index.scss'
+import SecurityProfile from './SecurityProfile'
+import '../Styling/SecurityIndex.scss'
 
-const Index = () => {
+const SecurityIndex = () => {
   // Display all items based on selection of Stocks, Crypto, or Forex
 
   const [securityArr, setSecurities] = useState([])
   const [exchangeArr, setExchanges] = useState([])
   const [securityType, setType] = useState('stocks')
+  // const [currentSecurity, selectSecurity] = useState({})
 
   useEffect(() => {
     // // set env variable for token in backend and pass in other param's ('stock','exchange','limit',etc.)
     fetch('http://127.0.0.1:5000/stocks_us')
       .then(res => res.json())
-      .then(data => {
-        setSecurities(data.slice(0,3))  //-------------------------------
+      .then(stocks => {
+        // setSecurities(stocks.slice(0,100))  //-------------------------------
+        setSecurities(stocks)
       })
   },[])
 
@@ -24,7 +27,8 @@ const Index = () => {
     fetch('http://127.0.0.1:5000/stocks_us')
       .then(res => res.json())
       .then(stocks => {
-        setSecurities(stocks.slice(0,3))  //-------------------------------
+        // setSecurities(stocks.slice(0,100))  //-------------------------------
+        setSecurities(stocks)
       })
 
     setType(type)
@@ -40,11 +44,14 @@ const Index = () => {
     setType(type)
   }
 
-
   let stockList
   if (securityArr.length > 1) {
-    stockList = securityArr.map((obj,i) => {
-      return <Link key={i} to={`/security/${obj['symbol']}`}><SecurityPreview key={i} stock={obj}/></Link>
+    stockList = securityArr.map((obj, i) => {
+      return (
+        <Link key={i} to={`/security/${obj['symbol']}`}>
+          <SecurityPreview key={i} security={obj} />
+        </Link>
+      )
     })
   }
 
@@ -55,7 +62,6 @@ const Index = () => {
     })
   }
 
-  // console.log(securityArr);
 
   return (
     <div className='index'>
@@ -71,14 +77,27 @@ const Index = () => {
         </div>
       </div>
       <div className='list'>
-        {
-          securityType === 'stocks'
-          ? stockList
-          : exchangeList
-        }
+
+        <Switch>
+          <Route path='/security/:id' render={
+            (routerProps) => {
+              let ticker = routerProps.match.params.id
+              return <SecurityProfile ticker={ticker}/>
+            }
+          }/>
+
+          <Route path='/security' render={
+            () => {
+              return <div>
+                { securityType === 'stocks' ? stockList : exchangeList }
+              </div>
+            }
+          }/>
+        </Switch>
+
       </div>
     </div>
   )
 }
 
-export default Index;
+export default SecurityIndex;

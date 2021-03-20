@@ -11,9 +11,9 @@ const Navbar = () => {
           <img id='logo' src={logo} alt='logo'/>
         </div>
         <div className='grid-col-2'>
-          <Link to='/index' className='nav-option'> INDEX </Link>
-          <Link to='/index' className='nav-option'> INDEX </Link>
-          <Link to='/index' className='nav-option'> INDEX </Link>
+          <Link to='/security' className='nav-option'> INDEX </Link>
+          <Link to='/security' className='nav-option'> INDEX </Link>
+          <Link to='/security' className='nav-option'> INDEX </Link>
         </div>
         <div className='grid-col-3'>
           <Link to='/login' className='acc-option login'> LOGIN </Link>

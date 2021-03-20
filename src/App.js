@@ -4,7 +4,7 @@ import Login from './Components/Login'
 import Register from './Components/Register'
 import SecurityProfile from './Components/SecurityProfile'
 import UserProfile from './Components/UserProfile'
-import Index from './Components/Index'
+import SecurityIndex from './Components/SecurityIndex'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import './Styling/App.scss'
 
@@ -19,9 +19,9 @@ function App() {
           <Switch>
             <Route component={Login} path='/login'/>
             <Route component={Register} path='/register'/>
-            <Route component={SecurityProfile} path='/security/:id'/>
             <Route component={UserProfile} path='/user/:id'/>
-            <Route component={Index} path='/index'/>
+            <Route component={SecurityIndex} path='/security'/>
+            <Route component={SecurityProfile} path='/security/:id'/>
           </Switch>
         </div>
       </div>
