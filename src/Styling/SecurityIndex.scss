@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Karla:wght@200;400;600;700&family=Proza+Libre:ital,wght@0,400;0,500;1,600&display=swap');
 
+$green: #105952;
+$aqua: #177F75;
+$light_aqua: #dff5f3;
+$light_gray: #fafafa;
+
 @mixin label {
   position: absolute;
   top: 12px;
@@ -27,17 +32,13 @@
   background-color: $light_gray;
 }
 
-$green: #105952;
-$aqua: #177F75;
-$light_aqua: #dff5f3;
-$light_gray: #fafafa;
-
 
 .index {
   margin-top: 80px;
 
   display: grid;
   grid-template-rows: 50px auto;
+  grid-row-gap: 18px;
   width: 90%;
 
   .search-div {
@@ -52,7 +53,8 @@ $light_gray: #fafafa;
         font-family: 'Karla', sans-serif;
         font-size: 18px;
         font-weight: 700;
-        margin: 10px;
+        margin: 10px 26px 10px 0;
+        color: $green;
       }
     }
 
@@ -100,13 +102,14 @@ $light_gray: #fafafa;
     }   // -------- .search-bar --------
   }   // -------- .search-div --------
 
-  .list {
-    display: grid;
-    grid-template-columns: repeat(6,1fr);
+  .list-div {
+    margin: 20px 0;
 
-    p {
-      color: black;
-      text-align: center;
+    .list {
+      display: grid;
+      grid-template-columns: repeat(6,1fr);
+      grid-column-gap: 18px;
+      grid-row-gap: 18px;
     }
   }
 

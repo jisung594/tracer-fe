@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Karla:wght@200;400;600;700&family=Proza+Libre:ital,wght@0,400;0,500;1,600&display=swap');
 
+$green: #105952;
+$aqua: #177F75;
+$light_aqua: #dff5f3;
+$light_gray: #fafafa;
+
 @mixin center {
   // set 'position' of parent div to RELATIVE
   position: absolute;
@@ -36,12 +41,6 @@
   transition: all .2s linear;
   background-color: $light_gray;
 }
-
-
-$green: #105952;
-$aqua: #177F75;
-$light_aqua: #dff5f3;
-$light_gray: #fafafa;
 
 
 .form {

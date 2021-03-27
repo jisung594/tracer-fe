@@ -14,8 +14,8 @@ const SecurityIndex = () => {
 
   useEffect(() => {
     // set env variable for token in backend and pass in other param's ('stock','exchange','limit',etc.)
-    fetch('https://tracerscfx-server.herokuapp.com/stocks_us')
-    // fetch('http://127.0.0.1:5000/stocks_us')
+    // fetch('https://tracerscfx-server.herokuapp.com/stocks_us')
+    fetch('http://127.0.0.1:5000/stocks_us')
       .then(res => res.json())
       .then(stocks => {
         // setSecurities(stocks.slice(0,100))  //-------------------------------
@@ -49,9 +49,10 @@ const SecurityIndex = () => {
 
   let stockList
   if (securityArr.length > 1) {
-    stockList = securityArr.map((obj, i) => {
+    var limitedArr = securityArr.slice(0,50)   // show 50 per page
+    stockList = limitedArr.map((obj, i) => {
       return (
-        <Link key={i} to={`/security/${obj['symbol']}`}>
+        <Link key={i} to={`/security/${obj['symbol']}`} style={{ textDecoration: 'none' }}>
           <SecurityPreview key={i} security={obj} />
         </Link>
       )
@@ -79,25 +80,22 @@ const SecurityIndex = () => {
           <label htmlFor='search'>Search stocks, crypto, and forex.</label>
         </div>
       </div>
-      <div className='list'>
-
+      <div className='list-div'>
         <Switch>
+          <Route path='/security' render={
+            () => {
+              return <div className='list'>
+                { securityType === 'stocks' ? stockList : exchangeList }
+              </div>
+            }
+          }/>
           <Route path='/security/:id' render={
             (routerProps) => {
               let ticker = routerProps.match.params.id
               return <SecurityProfile ticker={ticker}/>
             }
           }/>
-
-          <Route path='/security' render={
-            () => {
-              return <div>
-                { securityType === 'stocks' ? stockList : exchangeList }
-              </div>
-            }
-          }/>
         </Switch>
-
       </div>
     </div>
   )

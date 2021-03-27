@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@200;400;600;700&family=Proza+Libre:ital,wght@0,400;0,500;1,600&display=swap');
+
+$green: #105952;
+$aqua: #177F75;
+$blue: #05527f;
+$light_aqua: #dff5f3;
+$light_gray: #fafafa;
+
+.preview {
+  .symbol {
+    font-family: 'Proza Libre', sans-serif;
+    font-size: 16px;
+    margin: 6px 0;
+    color: $blue;
+  }
+
+  .name {
+    font-family: 'Karla', sans-serif;
+    font-size: 14px;
+    margin: 3px 0;
+    color: $aqua;
+  }
+}
