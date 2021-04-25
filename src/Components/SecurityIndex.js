@@ -13,6 +13,9 @@ const SecurityIndex = () => {
   let [exchangeArr, setExchanges] = useState([])
   let [securityType, setType] = useState('stocks')
   // const [currentSecurity, selectSecurity] = useState({})
+  let [currentPage, setCurrentPage] = useState(1)
+  let [itemsPerPage, setItemsPerPage] = useState(50)
+
 
   useEffect(() => {
     // set env variable for token in backend and pass in other param's ('stock','exchange','limit',etc.)
@@ -20,10 +23,14 @@ const SecurityIndex = () => {
     fetch('http://127.0.0.1:5000/stocks_us')
       .then(res => res.json())
       .then(stocks => {
-        setSecurities(stocks.slice(0,100))  //-------------------------------
-        // setSecurities(stocks)
+        setSecurities(stocks)
       })
   },[])
+
+
+  let indexOfLastItem = currentPage * itemsPerPage
+  let indexOfFirstItem = indexOfLastItem - itemsPerPage
+  let currentItems = securityArr.slice(indexOfFirstItem, indexOfLastItem)
 
 
   let searchHandler = (e) => {
@@ -34,8 +41,20 @@ const SecurityIndex = () => {
     setInput(e.target.value)
     setResults(results)
   }
-  console.log(searchInput, searchResults)
+  // console.log(searchInput, searchResults)
 
+
+  let sortAZ = (a,b) => {
+    return a.symbol < b.symbol ? -1 : a.symbol > b.symbol ? 1 : 0
+
+    // if (a.symbol < b.symbol) {
+    //   return -1;
+    // }
+    // if (a.symbol > b.symbol) {
+    //   return 1;
+    // }
+    // return 0;
+  }
 
 
   let stockHandler = (type) => {
@@ -43,8 +62,7 @@ const SecurityIndex = () => {
     fetch('http://127.0.0.1:5000/stocks_us')
       .then(res => res.json())
       .then(stocks => {
-        setSecurities(stocks.slice(0,100))  //-------------------------------
-        // setSecurities(stocks)
+        setSecurities(stocks)
       })
 
     setType(type)
@@ -64,7 +82,7 @@ const SecurityIndex = () => {
 
   let displayedStocks
   securityArr.length > 1 && searchInput.length < 1
-  ? displayedStocks = securityArr   // show 50 per page when there's no search input
+  ? displayedStocks = securityArr.sort(sortAZ).slice(0,100)   // show 50 per page when there's no search input
   : displayedStocks = searchResults
 
   let stockList = displayedStocks.map((obj, i) => {
@@ -74,7 +92,6 @@ const SecurityIndex = () => {
       </Link>
     )
   })
-
 
   let exchangeList
   if (exchangeArr.length > 1) {
@@ -97,6 +114,13 @@ const SecurityIndex = () => {
           <label htmlFor='search'>Search stocks, crypto, and forex.</label>
         </div>
       </div>
+      <div className='pagination'>
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+      </div>
       <div className='list-div'>
         <Switch>
           <Route path='/security/:id' render={
@@ -108,7 +132,6 @@ const SecurityIndex = () => {
           <Route path='/security' render={
             () => {
               return <div className='list'>
-                {/* securityType === 'stocks' ? stockList : exchangeList */}
                 { securityType === 'stocks' ? stockList : exchangeList }
               </div>
             }

@@ -37,7 +37,7 @@ $light_gray: #fafafa;
   margin-top: 80px;
 
   display: grid;
-  grid-template-rows: 50px auto;
+  grid-template-rows: 50px 20px auto;
   grid-row-gap: 18px;
   width: 90%;
 
@@ -101,6 +101,13 @@ $light_gray: #fafafa;
 
     }   // -------- .search-bar --------
   }   // -------- .search-div --------
+
+  .pagination {
+    text-align: right;
+    span {
+      margin: 5px 10px;
+    }
+  }
 
   .list-div {
     margin: 20px 0;
