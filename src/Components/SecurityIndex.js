@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import { Route, Link, Switch } from 'react-router-dom'
-import SecurityPreview from './SecurityPreview'
-import SecurityProfile from './SecurityProfile'
-import '../Styling/SecurityIndex.scss'
+import React, { useState, useEffect } from 'react';
+import { Route, Link, Switch } from 'react-router-dom';
+import SecurityPreview from './SecurityPreview';
+import SecurityProfile from './SecurityProfile';
+import Paginate from './Paginate';
+import '../Styling/SecurityIndex.scss';
 
 const SecurityIndex = () => {
   // Display all items based on selection of Stocks, Crypto, or Forex
@@ -14,7 +15,7 @@ const SecurityIndex = () => {
   let [securityType, setType] = useState('stocks')
   // const [currentSecurity, selectSecurity] = useState({})
   let [currentPage, setCurrentPage] = useState(1)
-  let [itemsPerPage, setItemsPerPage] = useState(50)
+  let [itemsPerPage] = useState(50)
 
 
   useEffect(() => {
@@ -23,15 +24,14 @@ const SecurityIndex = () => {
     fetch('http://127.0.0.1:5000/stocks_us')
       .then(res => res.json())
       .then(stocks => {
-        setSecurities(stocks)
+        setSecurities(stocks.sort(sortAZ))
       })
   },[])
 
 
-  let indexOfLastItem = currentPage * itemsPerPage
-  let indexOfFirstItem = indexOfLastItem - itemsPerPage
-  let currentItems = securityArr.slice(indexOfFirstItem, indexOfLastItem)
-
+  let sortAZ = (a,b) => {
+    return a.symbol < b.symbol ? -1 : a.symbol > b.symbol ? 1 : 0
+  }
 
   let searchHandler = (e) => {
     let results = securityArr.filter(sec => {
@@ -43,26 +43,12 @@ const SecurityIndex = () => {
   }
   // console.log(searchInput, searchResults)
 
-
-  let sortAZ = (a,b) => {
-    return a.symbol < b.symbol ? -1 : a.symbol > b.symbol ? 1 : 0
-
-    // if (a.symbol < b.symbol) {
-    //   return -1;
-    // }
-    // if (a.symbol > b.symbol) {
-    //   return 1;
-    // }
-    // return 0;
-  }
-
-
   let stockHandler = (type) => {
     // fetch('https://tracerscfx-server.herokuapp.com/stocks_us')
     fetch('http://127.0.0.1:5000/stocks_us')
       .then(res => res.json())
       .then(stocks => {
-        setSecurities(stocks)
+        setSecurities(stocks.sort(sortAZ))
       })
 
     setType(type)
@@ -79,15 +65,25 @@ const SecurityIndex = () => {
     setType(type)
   }
 
+  let paginateHandler = (e, num) => {
+    e.preventDefault()
+    setCurrentPage(num)
+  }
+
+  let indexOfLastItem = currentPage * itemsPerPage
+  let indexOfFirstItem = indexOfLastItem - itemsPerPage
+  let currentListItems = securityArr.slice(indexOfFirstItem, indexOfLastItem)
+  let currentSearchItems = searchResults.slice(indexOfFirstItem, indexOfLastItem)
 
   let displayedStocks
   securityArr.length > 1 && searchInput.length < 1
-  ? displayedStocks = securityArr.sort(sortAZ).slice(0,100)   // show 50 per page when there's no search input
-  : displayedStocks = searchResults
+  ? displayedStocks = currentListItems
+  : displayedStocks = currentSearchItems
+
 
   let stockList = displayedStocks.map((obj, i) => {
     return (
-      <Link key={i} to={`/security/${obj['symbol']}`} style={{ textDecoration: 'none' }}>
+      <Link key={i} to={`/profile/${obj['symbol']}`} style={{ textDecoration: 'none' }}>
         <SecurityPreview key={i} security={obj} />
       </Link>
     )
@@ -114,22 +110,19 @@ const SecurityIndex = () => {
           <label htmlFor='search'>Search stocks, crypto, and forex.</label>
         </div>
       </div>
-      <div className='pagination'>
-        <span>1</span>
-        <span>2</span>
-        <span>3</span>
-        <span>4</span>
-        <span>5</span>
-      </div>
+
+      <Paginate itemsPerPage={itemsPerPage} totalItems={securityArr.length} paginate={paginateHandler}/>
+
       <div className='list-div'>
         <Switch>
-          <Route path='/security/:id' render={
+          <Route path='/profile/:id' render={
             (routerProps) => {
               let ticker = routerProps.match.params.id
               return <SecurityProfile ticker={ticker}/>
             }
           }/>
-          <Route path='/security' render={
+
+          <Route path={'/index'} render={
             () => {
               return <div className='list'>
                 { securityType === 'stocks' ? stockList : exchangeList }

@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import { Redirect } from 'react-router-dom'
-import '../Styling/Form.scss'
+import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
+import '../Styling/Form.scss';
 
 const Login = () => {
   const [formInput, setInput] = useState({});

@@ -1,5 +1,5 @@
-import React from 'react'
-import '../Styling/Homepage.scss'
+import React from 'react';
+import '../Styling/Homepage.scss';
 
 const Homepage = () => {
   return (
@@ -9,4 +9,4 @@ const Homepage = () => {
   )
 }
 
-export default Homepage
+export default Homepage;

@@ -1,5 +1,5 @@
-import React from 'react'
-import '../Styling/SecurityPreview.scss'
+import React from 'react';
+import '../Styling/SecurityPreview.scss';
 
 const SecurityPreview = (props) => {
   // Display basic info (ticker, full name, etc.)

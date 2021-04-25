@@ -1,8 +1,8 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import '../Styling/Navbar.scss'
-import logo from '../Assets/placeholder_logo.png'
-import menu from '../Assets/menu-icon-3.png'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import '../Styling/Navbar.scss';
+import logo from '../Assets/placeholder_logo.png';
+import menu from '../Assets/menu-icon-3.png';
 
 const Navbar = () => {
   return (
@@ -11,9 +11,9 @@ const Navbar = () => {
           <img id='logo' src={logo} alt='logo'/>
         </div>
         <div className='grid-col-2'>
-          <Link to='/security' className='nav-option'> INDEX </Link>
-          <Link to='/security' className='nav-option'> INDEX </Link>
-          <Link to='/security' className='nav-option'> INDEX </Link>
+          <Link to='/index/1' className='nav-option'> INDEX </Link>
+          <Link to='/index/1' className='nav-option'> INDEX </Link>
+          <Link to='/index/1' className='nav-option'> INDEX </Link>
         </div>
         <div className='grid-col-3'>
           <Link to='/login' className='acc-option login'> LOGIN </Link>
