@@ -7,9 +7,11 @@ import '../Styling/SecurityIndex.scss'
 const SecurityIndex = () => {
   // Display all items based on selection of Stocks, Crypto, or Forex
 
-  const [securityArr, setSecurities] = useState([])
-  const [exchangeArr, setExchanges] = useState([])
-  const [securityType, setType] = useState('stocks')
+  let [searchInput, setInput] = useState('')
+  let [searchResults, setResults] = useState([])
+  let [securityArr, setSecurities] = useState([])
+  let [exchangeArr, setExchanges] = useState([])
+  let [securityType, setType] = useState('stocks')
   // const [currentSecurity, selectSecurity] = useState({})
 
   useEffect(() => {
@@ -18,27 +20,39 @@ const SecurityIndex = () => {
     fetch('http://127.0.0.1:5000/stocks_us')
       .then(res => res.json())
       .then(stocks => {
-        // setSecurities(stocks.slice(0,100))  //-------------------------------
-        setSecurities(stocks)
+        setSecurities(stocks.slice(0,100))  //-------------------------------
+        // setSecurities(stocks)
       })
   },[])
 
 
+  let searchHandler = (e) => {
+    let results = securityArr.filter(sec => {
+      return sec.description.toLowerCase().includes(e.target.value.toLowerCase())
+        || sec.symbol.toLowerCase().includes(e.target.value.toLowerCase())
+    })
+    setInput(e.target.value)
+    setResults(results)
+  }
+  console.log(searchInput, searchResults)
+
+
+
   let stockHandler = (type) => {
-    fetch('https://tracerscfx-server.herokuapp.com/stocks_us')
-    // fetch('http://127.0.0.1:5000/stocks_us')
+    // fetch('https://tracerscfx-server.herokuapp.com/stocks_us')
+    fetch('http://127.0.0.1:5000/stocks_us')
       .then(res => res.json())
       .then(stocks => {
-        // setSecurities(stocks.slice(0,100))  //-------------------------------
-        setSecurities(stocks)
+        setSecurities(stocks.slice(0,100))  //-------------------------------
+        // setSecurities(stocks)
       })
 
     setType(type)
   }
 
   let exchangeHandler = (type) => {
-    fetch('https://tracerscfx-server.herokuapp.com/' + type + '_exchanges')
-    // fetch('http://127.0.0.1:5000/' + type + '_exchanges')
+    // fetch('https://tracerscfx-server.herokuapp.com/' + type + '_exchanges')
+    fetch('http://127.0.0.1:5000/' + type + '_exchanges')
       .then(res => res.json())
       .then(exchanges => {
         setExchanges(exchanges)
@@ -47,17 +61,20 @@ const SecurityIndex = () => {
     setType(type)
   }
 
-  let stockList
-  if (securityArr.length > 1) {
-    var limitedArr = securityArr.slice(0,50)   // show 50 per page
-    stockList = limitedArr.map((obj, i) => {
-      return (
-        <Link key={i} to={`/security/${obj['symbol']}`} style={{ textDecoration: 'none' }}>
-          <SecurityPreview key={i} security={obj} />
-        </Link>
-      )
-    })
-  }
+
+  let displayedStocks
+  securityArr.length > 1 && searchInput.length < 1
+  ? displayedStocks = securityArr   // show 50 per page when there's no search input
+  : displayedStocks = searchResults
+
+  let stockList = displayedStocks.map((obj, i) => {
+    return (
+      <Link key={i} to={`/security/${obj['symbol']}`} style={{ textDecoration: 'none' }}>
+        <SecurityPreview key={i} security={obj} />
+      </Link>
+    )
+  })
+
 
   let exchangeList
   if (exchangeArr.length > 1) {
@@ -76,23 +93,24 @@ const SecurityIndex = () => {
           <span onClick={() => exchangeHandler('fx')}>FOREX</span>
         </div>
         <div className='search-bar'>
-          <input id='search' type='text' required/>
+          <input value={searchInput} onChange={(event) => searchHandler(event)} id='search' type='text' required/>
           <label htmlFor='search'>Search stocks, crypto, and forex.</label>
         </div>
       </div>
       <div className='list-div'>
         <Switch>
-          <Route path='/security' render={
-            () => {
-              return <div className='list'>
-                { securityType === 'stocks' ? stockList : exchangeList }
-              </div>
-            }
-          }/>
           <Route path='/security/:id' render={
             (routerProps) => {
               let ticker = routerProps.match.params.id
               return <SecurityProfile ticker={ticker}/>
+            }
+          }/>
+          <Route path='/security' render={
+            () => {
+              return <div className='list'>
+                {/* securityType === 'stocks' ? stockList : exchangeList */}
+                { securityType === 'stocks' ? stockList : exchangeList }
+              </div>
             }
           }/>
         </Switch>

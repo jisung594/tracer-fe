@@ -3,9 +3,9 @@ import React, { useState, useEffect } from 'react'
 const SecurityProfile = (props) => {
   // Display candlestick chart and basic info of company, high/low's, etc.
 
-  const { ticker } = props
-  const [basicInfo, setInfo] = useState({})
-  const [prices, setPrices] = useState({})
+  let { ticker } = props
+  let [basicInfo, setInfo] = useState({})
+  let [prices, setPrices] = useState({})
 
 
   useEffect(() => {

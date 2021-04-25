@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 
 const UserProfile = (props) => {
-  // const {  } = props
+  // let {  } = props
 
   useEffect(() => {
     fetch('http://127.0.0.1:5000/check_login')

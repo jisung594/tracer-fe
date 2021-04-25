@@ -3,7 +3,7 @@ import '../Styling/SecurityPreview.scss'
 
 const SecurityPreview = (props) => {
   // Display basic info (ticker, full name, etc.)
-  const { security } = props
+  let { security } = props
 
   return (
     <div className='preview'>
