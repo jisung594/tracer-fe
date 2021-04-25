@@ -1,0 +1,29 @@
+$green: #105952;
+$aqua: #177F75;
+$light_aqua: #dff5f3;
+$light_gray: #fafafa;
+
+// @mixin center {
+//   position: absolute;
+//   top: 0;
+//   bottom: 0;
+//   left: 0;
+//   right: 0;
+//   margin: auto;
+// }
+
+.landing {
+  width: 90%;
+  margin-top: 80px;
+
+  .headline {
+    text-align: left;
+
+    font-family: 'Proza Libre', sans-serif;
+    font-size: 80px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 86px;
+    color: $green;
+  }
+}

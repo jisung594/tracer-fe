@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import { Link } from 'react-router-dom'
 import '../Styling/Navbar.scss'
 import logo from '../Assets/placeholder_logo.png'
