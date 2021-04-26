@@ -6,6 +6,8 @@ import Register from './Components/Register';
 import SecurityProfile from './Components/SecurityProfile';
 import UserProfile from './Components/UserProfile';
 import SecurityIndex from './Components/SecurityIndex';
+import News from './Components/News';
+import Calendar from './Components/Calendar';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './Styling/App.scss';
 
@@ -22,6 +24,8 @@ function App() {
             <Route component={Register} path='/register'/>
             <Route component={UserProfile} path='/user/:id'/>
             <Route component={SecurityIndex} path='/index'/>
+            <Route component={News} path='/news'/>
+            <Route component={Calendar} path='/calendar'/>
             <Route component={SecurityProfile} path='/profile/:id'/>
           </Switch>
         </div>
