@@ -23,7 +23,9 @@ const SecurityIndex = () => {
     fetch('https://tracerscfx-server.herokuapp.com/stocks_us', {
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': 'https://tracerscfx-.herokuapp.com'
+        'Accept': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': 'true'
       }
     })
     // fetch('http://127.0.0.1:5000/stocks_us')
