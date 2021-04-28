@@ -4,9 +4,20 @@ $light_aqua: #dff5f3;
 $light_gray: #fafafa;
 
 
+@mixin center {
+  // set 'position' of parent div to RELATIVE
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+
 .landing {
   width: 90%;
-  margin-top: 80px;
+  margin-top: 180px;
 
   .headline {
     text-align: left;
