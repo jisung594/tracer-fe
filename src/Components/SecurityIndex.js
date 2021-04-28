@@ -20,7 +20,8 @@ const SecurityIndex = () => {
 
   useEffect(() => {
     // set env variable for token in backend and pass in other param's ('stock','exchange','limit',etc.)
-    fetch('https://tracerscfx-server.herokuapp.com/stocks_us', {
+    // fetch('https://tracerscfx-server.herokuapp.com/stocks_us')
+    fetch('https://tracerscfx-server.herokuapp.com/tracer_be/retrieve/retrieve/stocks_us', {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
