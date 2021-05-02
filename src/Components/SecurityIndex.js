@@ -19,20 +19,26 @@ const SecurityIndex = () => {
 
 
   useEffect(() => {
-    // set env variable for token in backend and pass in other param's ('stock','exchange','limit',etc.)
-    fetch('https://tracerscfx-server.herokuapp.com/stocks_us', {
-      mode: 'cors',
-      headers: {
-        'Access-Control-Allow-Origin':'*',
-        'Content-Type': 'application/json'
-      }
-    })
+    // // set env variable for token in backend and pass in other param's ('stock','exchange','limit',etc.)
+    // fetch('https://tracerscfx-server.herokuapp.com/stocks_us', {
+    //   mode: 'cors',
+    //   credentials: 'include',
+    //   headers: {
+    //     'Access-Control-Allow-Origin':'*',
+    //     'Access-Control-Allow-Credentials': true,
+    //     'Content-Type': 'application/json'
+    //
+    //   }
+    // })
+
+      fetch('https://tracerscfx-server.herokuapp.com/stocks_us')
     // fetch('http://127.0.0.1:5000/stocks_us')
       .then(res => res.json())
       .then(stocks => {
         setSecurities(stocks.sort(sortAZ))
       })
   },[])
+
 
 
   let sortAZ = (a,b) => {
